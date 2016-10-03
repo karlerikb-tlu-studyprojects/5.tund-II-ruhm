@@ -1,5 +1,10 @@
 <?php
 
+	require("../../../config.php");
+	require("functions.php");
+	
+
+
 	$loginEmailError = "";
 	$loginPasswordError = "";
 	$signupEmailError = "";
@@ -125,6 +130,29 @@
 	
 	
 	
+	//******
+	
+	
+	if($signupEmailError == "" &&
+		empty($signupPasswordError) &&
+		isset($_POST["signupEmail"]) &&
+		isset($_POST["signupPassword"])
+		) {
+			echo "Salvestan... <br>";
+			echo "email: ".$signupEmail."<br>";
+			echo "password: ".$_POST["signupPassword"]."<br>";
+			$password = hash("sha512", $_POST["signupPassword"]);
+			echo "password hashed: ".$password."<br>";
+			signUp($signupEmail, $password);
+		}
+	
+	
+	$error = "";
+	if(isset($_POST["loginEmail"]) && isset($_POST["loginPassword"]) &&
+		!empty($_POST["loginEmail"]) && !empty($_POST["loginPassword"])
+	) {
+		$error = login($_POST["loginEmail"], $_POST["loginPassword"]);
+	}
 	
 	
 	
