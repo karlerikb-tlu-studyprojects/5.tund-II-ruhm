@@ -18,4 +18,4 @@
 <h1>Data</h1>
 
 <p>Tere tulemast <?=$_SESSION["userEmail"];?></p>
-<a href="?logout=1">Logi v‰lja</a>
+<a href="?logout=1">Logi v√§lja</a>

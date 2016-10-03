@@ -3,6 +3,10 @@
 	require("../../../config.php");
 	require("functions.php");
 	
+	if(isset($_SESSION["userId"] )) {
+		header("Location: data.php");
+	}
+	
 
 
 	$loginEmailError = "";
@@ -14,6 +18,15 @@
 	$addressError = "";
 	$phoneNumberError = "";
 	$gender = "";
+	$signupEmail = "";
+	$firstName = "";
+	$lastName = "";
+	$dateDay = "";
+	$dateMonth = "";
+	$dateYear = "";
+	$country = "";
+	$address = "";
+	$phoneNumber = "";
 	
 	
 
