@@ -17,5 +17,5 @@
 
 <h1>Data</h1>
 
-<p>Tere tulemast <?=$_SESSION["userFirstName"];?> <?=$_SESSION["userLastName"];?></p>
+<p>Tere tulemast <?=$_SESSION["userEmail"];?></p>
 <a href="?logout=1">Logi välja</a>

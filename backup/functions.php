@@ -4,16 +4,16 @@
 	
 	//**** SIGNUP ****
 	
-	function signUp ($email, $password, $firstname, $lastname, $day, $month, $year, $gender) {
+	function signUp ($email, $password) {
 		
 		$database = "if16_karlerik";
 			$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 			
-			$stmt = $mysqli->prepare("INSERT INTO user_sample (email, password, firstname, lastname, day, month, year, gender) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+			$stmt = $mysqli->prepare("INSERT INTO user_sample (email, password) VALUES (?, ?)");
 			
 			echo $mysqli->error;
 			
-			$stmt->bind_param("ssssiiis", $email, $password, $firstname, $lastname, $day, $month, $year, $gender);
+			$stmt->bind_param("ss", $email, $password);
 			
 			if($stmt->execute()) {
 				echo "salvestamine õnnestus";	
@@ -30,11 +30,11 @@
 		$error = "";
 		$database = "if16_karlerik";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
-		$stmt = $mysqli->prepare("SELECT id, email, password, created, firstname, lastname FROM user_sample WHERE email = ?");
+		$stmt = $mysqli->prepare("SELECT id, email, password, created FROM user_sample WHERE email = ?");
 		
 		echo $mysqli->error;
 		$stmt->bind_param("s", $email);
-		$stmt->bind_result($id, $emailFromDb, $passwordFromDb, $created, $firstNameDb, $lastNameDb);
+		$stmt->bind_result($id, $emailFromDb, $passwordFromDb, $created);
 		$stmt->execute();
 		
 		if($stmt->fetch()) {
@@ -43,8 +43,6 @@
 				echo "Kasutaja logis sisse ".$id;
 				$_SESSION["userId"] = $id;
 				$_SESSION["userEmail"] = $emailFromDb;
-				$_SESSION["userFirstName"] = $firstNameDb;
-				$_SESSION["userLastName"] = $lastNameDb;
 				
 				header("Location: data.php");
 				

@@ -149,22 +149,14 @@
 	if($signupEmailError == "" &&
 		empty($signupPasswordError) &&
 		isset($_POST["signupEmail"]) &&
-		isset($_POST["signupPassword"]) &&
-		isset($_POST["firstName"]) &&
-		isset($_POST["lastName"]) &&
-		isset($_POST["dateDay"]) &&
-		isset($_POST["dateMonth"]) &&
-		isset($_POST["dateYear"]) &&
-		isset($_POST["gender"])
+		isset($_POST["signupPassword"])
 		) {
 			echo "Salvestan... <br>";
 			echo "email: ".$signupEmail."<br>";
 			echo "password: ".$_POST["signupPassword"]."<br>";
-			echo "eesnimi: ".$_POST["firstName"]."<br>";
-			echo "perenimi: ".$_POST["lastName"]."<br>";
 			$password = hash("sha512", $_POST["signupPassword"]);
 			echo "password hashed: ".$password."<br>";
-			signUp($signupEmail, $password, $firstName, $lastName, $dateDay, $dateMonth, $dateYear, $gender);
+			signUp($signupEmail, $password);
 		}
 	
 	
